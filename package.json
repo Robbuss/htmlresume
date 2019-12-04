@@ -1,18 +1,19 @@
 {
-  "name": "cvparser",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "app": "node app.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "mammoth": "^1.4.9",
-    "pdf-parse": "^1.1.1",
-    "pdftohtmljs": "^0.5.3"
-  }
+    "name": "cvparser",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "parse": "node parse.js",
+        "extract": "node extract.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "mammoth": "^1.4.9",
+        "pdf-parse": "^1.1.1",
+        "pdftohtmljs": "^0.5.3"
+    }
 }

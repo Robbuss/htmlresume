@@ -12,8 +12,8 @@ const path = require('path');
         const file = resumedir + '\\' + dirs[i];
         // convert the docx files
         if (file.endsWith('.docx') || file.endsWith('.doc')) {
-            const html = await mammoth.convertToHtml({ path: file });
-            fs.writeFile(file + ".html", html.value, function (err) {
+            const html = await mammoth.extractRawText({ path: file });
+            fs.writeFile(file + ".txt", html.value, function(err) {
                 if (err) throw err;
                 console.log('Created file.');
             });
@@ -21,7 +21,7 @@ const path = require('path');
         // convert the pdfs to text
         if (file.endsWith('.pdf')) {
             const pdf = await pdfparse(fs.readFileSync(file))
-            fs.writeFile(file + ".html", pdf.text, function (err) {
+            fs.writeFile(file + ".txt", pdf.text, function(err) {
                 if (err) throw err;
                 console.log('Created file.');
             });
