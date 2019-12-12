@@ -1,5 +1,22 @@
 const fs = require('fs');
 const path = require('path');
+const { PythonShell } = require('python-shell');
+const express = require('express');
+const app = express();
+
+
+app.listen(3001, function () {
+    console.log('server running on port 3000');
+})
+
+app.get('/', callpython)
+
+function callpython(req, res) {
+    PythonShell.run('./sentiment.py', {}, function (err, data) {
+        if (err) res.send(err);
+        res.send(data.toString())
+      });
+}
 
 const pdfparse = require('pdf-parse');
 // const PDFParser = require("pdf2json");
@@ -24,13 +41,13 @@ function getFiles(ext) {
 function walk(dir) {
     var results = [];
     var list = fs.readdirSync(dir);
-    list.forEach(function(file) {
+    list.forEach(function (file) {
         file = dir + '/' + file;
         var stat = fs.statSync(file);
-        if (stat && stat.isDirectory()) { 
+        if (stat && stat.isDirectory()) {
             /* Recurse into a subdirectory */
             results = results.concat(walk(file));
-        } else { 
+        } else {
             /* Is a file */
             results.push(file);
         }
@@ -84,11 +101,11 @@ async function pdfToText(files) {
     }
 }
 
-async function toOutput(){
+async function toOutput() {
     let files = getFiles('txt')
     let count = 0
 
-    for(let i = 0; i < files.length; i++){
+    for (let i = 0; i < files.length; i++) {
         let newPath = files[i].replace(path.dirname(files[i]), outputdir)
 
         if (fs.existsSync(newPath)) {

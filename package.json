@@ -12,9 +12,11 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "express": "^4.17.1",
         "mammoth": "^1.4.9",
         "pdf-parse": "^1.1.1",
         "pdf2json": "^1.1.8",
+        "python-shell": "^1.0.8",
         "word2pdf": "^1.0.8"
     }
 }
