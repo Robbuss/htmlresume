@@ -3,7 +3,11 @@ import random
 from nltk.corpus import PlaintextCorpusReader
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+from nltk.tokenize import sent_tokenize
 from nltk.stem import PorterStemmer
+from os import listdir
+from os.path import isfile, join
+
 #nltk.download()
 
 # tokenizing - word tokenizers .. sentence tokenizers -> seperate by
@@ -18,25 +22,37 @@ from nltk.stem import PorterStemmer
 
 # stop words filtering -> basicly filtering out words that have no meaning
 
-
 # RegEx or list of file names
-files = ".*\.txt"
-corpus0 = PlaintextCorpusReader("./cvs/output", files)
+# files = ".*\.txt" 
+# corpus0 = PlaintextCorpusReader("./cvs/output", files) # this reads all the files with txt succesfully
 
-corpus  = nltk.Text(corpus0.words())
+files = [f for f in listdir("./cvs/output") if isfile(join("./cvs/output", f))]
+contents = []
+for file in files:
+    contents.append(open('./cvs/output/' + file).read())
 
-stop_words = set(stopwords.words("dutch"))
+for content in contents:
+    print(content.split('\n'))
 
-# words = word_tokenize(, language='dutch', preserve_line=True)
 
-filtered_sentence = []
+# statements.findall(r"<.:> <\s+>")
+# for s in statements:
+#     print(s)
 
-#for w in words:
-#    if w not in stop_words:
-#        filtered_sentence.append(w)
+# corpus  = nltk.Text(corpus0.words())
+# stop_words = set(stopwords.words("dutch"))
 
-filtered_sentence = [w for w in corpus0.words() if not w in stop_words] #same as above
-print(filtered_sentence)
+# # words = word_tokenize(, language='dutch', preserve_line=True)
+
+# filtered_sentence = []
+
+# #for w in words:
+# #    if w not in stop_words:
+# #        filtered_sentence.append(w)
+
+# filtered_sentence = [w for w in corpus0.words() if not w in stop_words] #same as above
+# # print(filtered_sentence)
+# print(corpus0.sents())
 
 #stemming -> normalization, take words; take the root stem (riding -> rid: stem for riding, ridden, etc ) 
 
