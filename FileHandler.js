@@ -2,8 +2,8 @@ const fs = require('fs');
 const resumedir = __dirname + '\\cvs';
 
 class FileHandler {
-    getFiles = (ext) => {
-        let files = this.walk(resumedir)
+    getFiles = (ext, dir = resumedir) => {
+        let files = this.walk(dir)
         let filtered = files.filter(x => x.includes('.' + ext))
 
         return filtered;

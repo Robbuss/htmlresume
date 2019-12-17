@@ -1,0 +1,14 @@
+{
+    "label": "pers_label",
+    "data": [
+        "Naam",
+        "Roepnaam",
+        "Voornaam",
+        "Achternaam",
+        "Geboortedatum",
+        "Woonplaats",
+        "Postcode",
+        "Straat",
+        "Straatnaam"
+    ]
+}

@@ -11,8 +11,6 @@ async function main() {
     await ConvertToText.pdfToText(FileHandler.getFiles('pdf'));
     await ConvertToText.toOutput();
 
-    // regex
-    Extractor.extract(FileHandler.getFiles('txt'))
 };
 main();
 
@@ -21,6 +19,12 @@ app.listen(3001, function () {
     console.log('server running on port 3000');
 })
 app.get('/', callpython)
+app.get('/extract', function(req, res){
+        // regex
+        console.log(FileHandler.getFiles('txt'))
+    const extracted = Extractor.extract(FileHandler.getFiles('txt'))
+    res.send(extracted)
+})
 
 function callpython(req, res) {
     PythonShell.run('./sentiment.py', {}, function (err, data) {

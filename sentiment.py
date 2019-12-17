@@ -26,21 +26,22 @@ from os.path import isfile, join
 # files = ".*\.txt" 
 # corpus0 = PlaintextCorpusReader("./cvs/output", files) # this reads all the files with txt succesfully
 
-files = [f for f in listdir("./cvs/output") if isfile(join("./cvs/output", f))]
-contents = []
-for file in files:
-    contents.append(open('./cvs/output/' + file).read())
+# files = [f for f in listdir("./cvs/output") if isfile(join("./cvs/output", f))]
+# contents = []
+# for file in files:
+#     contents.append(open('./cvs/output/' + file).read())
 
-for content in contents:
-    print(content.split('\n'))
-
+# for content in contents:
+#     print(content.split('\n'))
 
 # statements.findall(r"<.:> <\s+>")
 # for s in statements:
 #     print(s)
 
 # corpus  = nltk.Text(corpus0.words())
-# stop_words = set(stopwords.words("dutch"))
+stop_words = set(stopwords.words("dutch"))
+for w in stop_words:
+    print(w)
 
 # # words = word_tokenize(, language='dutch', preserve_line=True)
 
