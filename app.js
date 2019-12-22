@@ -29,25 +29,27 @@ app.get('/extract/:ext', function (req, res) {
   if (req.query.json)
     return res.json(extracted)
 
-  res.render('index', { extracted: extracted })
+  res.render('index', { extracted: extracted, tagged: [] })
 })
 
 app.get('/convert', function (req, res) {
   main()
-  res.render('index', { extracted: [] })
+  res.render('index', { extracted: [], tagged: [] })
 })
 
 app.get('/tag', function (req, res) {
-  const files = FileHandler.getFiles(['html', 'txt'], __dirname + '\\cvs\\' + req.query.id)
-  if (files.length === 0)
-    return res.render('index', { extracted: [] })
+  const extractfiles = FileHandler.getFiles(['html', 'txt'], __dirname + '\\cvs\\' + req.query.id)
+  const tagfiles = FileHandler.getFiles(['html', 'txt'], __dirname + '\\cvs\\' + req.query.id)
+  if (extractfiles.length === 0 && tagfiles.length === 0)
+    return res.render('index', { extracted: [], tagged: [] })
 
-  const extracted = Extractor.extract(files) // write tagger file here instead of extractor
+  const extracted = Extractor.extract(extractfiles)
+  const tagged = Tagger.tag(extractfiles)
 
   if (req.query.json)
-    return res.json(extracted)    
+    return res.json([extracted, tagged])    
     
-  res.render('index', { extracted: extracted, tagged: [] })
+  res.render('index', { extracted: extracted, tagged: tagged })
 })
 
 app.listen(3001, function () {

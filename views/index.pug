@@ -1,7 +1,8 @@
 extends layout.pug
 block content    
-    if(extracted.length === 0)
+    if(extracted.length === 0 && tagged.length === 0)
         h1= 'No Files Found.'
+
     each data in extracted
         table(class='table is-bordered is-striped is-narrow is-hoverable is-fullwidth')
             thead
@@ -13,4 +14,7 @@ block content
                     tr
                         td= key
                         td= field
+    each tag in tagged
+        div.card
+            div.card-content!= JSON.stringify(tag)
 
