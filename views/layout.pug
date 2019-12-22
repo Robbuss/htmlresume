@@ -1,0 +1,29 @@
+html
+    head
+        title Resume Parser
+        block scripts
+
+        block styles    
+            link(rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css')
+
+    body
+        div(class='container')
+            nav(class='navbar' role='navigation' aria-label='main navigation')
+                div(class='navbar-menu')
+                    div(class='navbar-start')
+                        a(class='navbar-item' href='/convert') Convert
+                        a(class='navbar-item' href='/extract/txt') All txt
+                        a(class='navbar-item' href='/extract/html') All HTML
+                        div(class='navbar-item field')
+                            p(class='control ')
+                                form(method='GET' action='/tag' style='margin-bottom:0px')
+                                    input(type='number' placeholder='1' name='id')        
+                                    button(type='submit') Get resume    
+        section(class='section')
+            div(class='container')
+                block content
+
+        div(class='footer')
+            block foot
+                div(class='content has-text-centered')
+                    p Resume Parser

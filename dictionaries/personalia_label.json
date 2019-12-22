@@ -2,13 +2,20 @@
     "label": "pers_label",
     "data": [
         "Naam",
+        "email",
+        "E-mail",
+        "emailadres",
+        "telefoonnummer",
         "Roepnaam",
         "Voornaam",
         "Achternaam",
         "Geboortedatum",
+        "Geb.datum",
         "Woonplaats",
         "Postcode",
         "Straat",
-        "Straatnaam"
+        "Straatnaam",
+        "Nationaliteit",
+        "website"
     ]
 }

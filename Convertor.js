@@ -1,13 +1,17 @@
 const fs = require('fs');
 const path = require('path');
+
 const pdfparse = require('pdf-parse');
-// const PDFParser = require("pdf2json");
-const word2pdf = require("word2pdf");
+const PDFParser = require('pdf2json');
+const word2pdf = require('word2pdf');
+const pdftohtml = require('pdftohtmljs');
+const mammoth = require('mammoth');
+
 const FileHandler = require('./FileHandler');
 const resumedir = __dirname + '\\cvs';
 const outputdir = resumedir + '\\output';
 
-class ConvertToText {
+class Convertor {
     async wordToPdf(files) {
         for (let i = 0; i < files.length; i++) {
 
@@ -30,6 +34,28 @@ class ConvertToText {
         }
     };
 
+    async wordToHtml(files) {
+        for (let i = 0; i < files.length; i++) {
+
+            if (!files[i].match(/(\.docx|\.doc)/)) {
+                console.log('File is not a doc or docx, skipping...')
+                continue;
+            }
+
+            if (fs.existsSync(files[i].replace(/(docx|doc)/, 'html'))) {
+                console.log('HTML file exists, skipping..')
+                continue;
+            }
+            console.log(files[i]);
+            const data = (await mammoth.convertToHtml({ path: files[i]})).value
+
+            fs.writeFileSync(files[i].replace(/(docx|doc)/, 'html'), data, function (err) {
+                console.log(err)
+            });
+            console.log('Converted ' + files[i] + ' to html');
+        }
+    };    
+
     async pdfToText(files) {
         for (let i = 0; i < files.length; i++) {
 
@@ -51,33 +77,12 @@ class ConvertToText {
             }
 
             let pdf = await pdfparse(fs.readFileSync(files[i]), renderOptions)
-            console.log(pdf.metadata)
             fs.writeFile(files[i].replace('pdf', 'txt'), pdf.text, function (err) {
                 if (err) throw err;
                 console.log('Created file.');
             });
             console.log('Converted ' + files[i] + ' to text');
         }
-    }
-
-    async toOutput() {
-        let files = FileHandler.getFiles('txt')
-        let count = 0
-
-        for (let i = 0; i < files.length; i++) {
-            let newPath = files[i].replace(path.dirname(files[i]), outputdir)
-
-            if (fs.existsSync(newPath)) {
-                console.log('Text file exists in output, skipping..')
-                continue;
-            }
-            // move the file by renaming the path
-            fs.rename(files[i], newPath, (err) => {
-                if (err) throw err;
-            });
-            count++;
-        }
-        console.log('Moved ' + count + ' files')
     }
 
     // async pdfToJson(files) {
@@ -98,5 +103,13 @@ class ConvertToText {
     //         }
     //     }
     // };
+
+    // var converter = new pdftohtml('cvs/', "sample.html");
+    // converter.convert('default').then(function() {
+    //     console.log("Success");
+    //   }).catch(function(err) {
+    //     console.error("Conversion error: " + err);
+    //   });
+
 }
-module.exports = new ConvertToText;
+module.exports = new Convertor;

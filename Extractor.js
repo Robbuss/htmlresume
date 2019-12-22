@@ -24,9 +24,6 @@ class Extractor {
         const pod = []
 
         for (let i = 0; i < dirs.length; i++) {
-            if (!dirs[i].endsWith('.txt'))
-                continue
-
             let data = fs.readFileSync(dirs[i], 'utf8', function (err) {
                 if (err) throw err;
             });

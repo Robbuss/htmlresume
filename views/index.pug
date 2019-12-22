@@ -1,0 +1,16 @@
+extends layout.pug
+block content    
+    if(data.length === 0)
+        h1= 'No Files Found.'
+    each val in data
+        table(class='table is-bordered is-striped is-narrow is-hoverable is-fullwidth')
+            thead
+                tr
+                    th='Veld'
+                    th='Waarde'
+            tbody
+                each field, key in val
+                    tr
+                        td= key
+                        td= field
+

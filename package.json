@@ -16,6 +16,8 @@
         "mammoth": "^1.4.9",
         "pdf-parse": "^1.1.1",
         "pdf2json": "^1.1.8",
+        "pdftohtmljs": "^0.5.3",
+        "pug": "^2.0.4",
         "python-shell": "^1.0.8",
         "word2pdf": "^1.0.8"
     }
