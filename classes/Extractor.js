@@ -1,26 +1,7 @@
 const fs = require('fs');
-const FileHandler = require('./FileHandler');
-const BaseClass = require('./BaseClass');
+const Dictionary = require('./Dictionary');
 
-class Extractor extends BaseClass{
-    constructor() {
-        super();
-        this.dict = this.initDict();
-    }
-
-    initDict() {
-        let fileNames = FileHandler.getFiles('json', this.dictdir)
-        let dict = [];
-        for (let i = 0; i < fileNames.length; i++) {
-            const r = fs.readFileSync(fileNames[i], 'utf8', (err) => {
-                if (err)
-                    throw err;
-            });
-            dict.push(JSON.parse(r))
-        }
-        return dict;
-    }
-
+class Extractor extends Dictionary{
     extract(dirs) {
         const pod = []
 
