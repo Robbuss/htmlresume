@@ -2,9 +2,10 @@ const { PythonShell } = require('python-shell');
 const express = require('express');
 const app = express();
 
-const FileHandler = require('./FileHandler');
-const Convertor = require('./Convertor');
-const Extractor = require('./Extractor');
+const FileHandler = require('./classes/FileHandler');
+const Convertor = require('./classes/Convertor');
+const Extractor = require('./classes/Extractor');
+const Tagger = require('./classes/Tagger');
 
 // check if files need to be converted
 async function main() {
@@ -25,29 +26,28 @@ app.get('/python', function (req, res) {
 
 app.get('/extract/:ext', function (req, res) {
   const extracted = Extractor.extract(FileHandler.getFiles(req.params.ext))
-
   if (req.query.json)
     return res.json(extracted)
 
-  res.render('index', { data: extracted })
+  res.render('index', { extracted: extracted })
 })
 
 app.get('/convert', function (req, res) {
   main()
-  res.render('index', { data: [] })
+  res.render('index', { extracted: [] })
 })
 
 app.get('/tag', function (req, res) {
   const files = FileHandler.getFiles(['html', 'txt'], __dirname + '\\cvs\\' + req.query.id)
   if (files.length === 0)
-    return res.render('index', { data: [] })
+    return res.render('index', { extracted: [] })
 
   const extracted = Extractor.extract(files) // write tagger file here instead of extractor
 
   if (req.query.json)
     return res.json(extracted)    
     
-  res.render('index', { data: extracted })
+  res.render('index', { extracted: extracted, tagged: [] })
 })
 
 app.listen(3001, function () {

@@ -1,15 +1,15 @@
 extends layout.pug
 block content    
-    if(data.length === 0)
+    if(extracted.length === 0)
         h1= 'No Files Found.'
-    each val in data
+    each data in extracted
         table(class='table is-bordered is-striped is-narrow is-hoverable is-fullwidth')
             thead
                 tr
                     th='Veld'
                     th='Waarde'
             tbody
-                each field, key in val
+                each field, key in data
                     tr
                         td= key
                         td= field

@@ -1,14 +1,15 @@
 const fs = require('fs');
-const path = require('path');
 const FileHandler = require('./FileHandler');
-// lets first throw some regexes at these things, moving them to python later
-class Extractor {
+const BaseClass = require('./BaseClass');
+
+class Extractor extends BaseClass{
     constructor() {
+        super();
         this.dict = this.initDict();
     }
 
     initDict() {
-        let fileNames = FileHandler.getFiles('json', __dirname + '\\dictionaries')
+        let fileNames = FileHandler.getFiles('json', this.dictdir)
         let dict = [];
         for (let i = 0; i < fileNames.length; i++) {
             const r = fs.readFileSync(fileNames[i], 'utf8', (err) => {

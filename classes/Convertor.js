@@ -7,11 +7,9 @@ const word2pdf = require('word2pdf');
 const pdftohtml = require('pdftohtmljs');
 const mammoth = require('mammoth');
 
-const FileHandler = require('./FileHandler');
-const resumedir = __dirname + '\\cvs';
-const outputdir = resumedir + '\\output';
+const BaseClass = require('./BaseClass');
 
-class Convertor {
+class Convertor extends BaseClass {
     async wordToPdf(files) {
         for (let i = 0; i < files.length; i++) {
 
@@ -47,14 +45,14 @@ class Convertor {
                 continue;
             }
             console.log(files[i]);
-            const data = (await mammoth.convertToHtml({ path: files[i]})).value
+            const data = (await mammoth.convertToHtml({ path: files[i] })).value
 
             fs.writeFileSync(files[i].replace(/(docx|doc)/, 'html'), data, function (err) {
                 console.log(err)
             });
             console.log('Converted ' + files[i] + ' to html');
         }
-    };    
+    };
 
     async pdfToText(files) {
         for (let i = 0; i < files.length; i++) {
@@ -63,11 +61,10 @@ class Convertor {
                 console.log('File is not a PDF, skipping...')
                 continue;
             }
-            if (fs.existsSync(files[i].replace('pdf', 'txt').replace(path.dirname(files[i]), outputdir))) {
+            if (fs.existsSync(files[i].replace('pdf', 'txt').replace(path.dirname(files[i]), this.outputdir))) {
                 console.log('Text file exists, skipping..')
                 continue;
             }
-
 
             let renderOptions = {
                 //replaces all occurrences of whitespace with standard spaces (0x20). The default value is `false`.

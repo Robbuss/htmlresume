@@ -1,10 +1,9 @@
 const fs = require('fs');
 const path = require('path');
-const resumedir = __dirname + '\\cvs';
-const outputdir = resumedir + '\\output';
+const BaseClass = require('./BaseClass')
 
-class FileHandler {
-    getFiles = (ext, dir = resumedir) => {
+class FileHandler extends BaseClass{
+    getFiles = (ext, dir = this.resumedir) => {
         if (!Array.isArray(ext))
             ext = [ext]
 
@@ -48,7 +47,7 @@ class FileHandler {
         let count = 0
 
         for (let i = 0; i < files.length; i++) {
-            let newPath = files[i].replace(path.dirname(files[i]), outputdir)
+            let newPath = files[i].replace(path.dirname(files[i]), this.outputdir)
 
             if (fs.existsSync(newPath)) {
                 console.log('Text file exists in output, skipping..')
