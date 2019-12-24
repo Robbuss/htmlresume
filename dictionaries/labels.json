@@ -2,18 +2,18 @@
     "label": "label",
     "color": "link",
     "data": [
-        "Werkervaring",
-        "Werk ervaring",
-        "Opleiding",
-        "Opleidingen",
-        "Cursussen",
-        "Certificaten",
-        "Vrijwillegerswerk",
-        "Vrijwilligerswerk",
-        "Extra",
-        "Overige informatie",
+        "werkervaring",
+        "werk ervaring",
+        "opleiding",
+        "opleidingen",
+        "cursussen",
+        "certificaten",
+        "vrijwillegerswerk",
+        "vrijwilligerswerk",
+        "extra",
+        "overige informatie",
         "overige gegevens",
         "werkzaamheden",
-        "Referenties"
+        "referenties"
     ]
 }

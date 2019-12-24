@@ -15,14 +15,6 @@ async function main() {
   await FileHandler.toOutput('txt');
 };
 
-async function lowerCaseDict(){
-  files = await FileHandler.getFiles('', './dictionaries');
-  for(file in files){
-    
-  }
-}
-lowerCaseDict();
-
 app.set('view engine', 'pug')
 
 app.get('/python', function (req, res) {
@@ -55,8 +47,8 @@ app.get('/tag', function (req, res) {
   const tagged = Tagger.tag(extractfiles)
 
   if (req.query.json)
-    return res.json([extracted, tagged])    
-    
+    return res.json([extracted, tagged])
+
   res.render('index', { extracted: extracted, tagged: tagged })
 })
 

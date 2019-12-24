@@ -2,19 +2,19 @@
     "label": "provincie",
     "color": "warning",
     "data": [
-        "Groningen",
-        "Friesland",
-        "Drenthe",
-        "Overijssel",
-        "Flevoland",
-        "Gelderland",
-        "Utrecht",
-        "Noord-Holland",
-        "Noord Holland",
-        "Zuid-Holland",
-        "Zuid Holland",
-        "Zeeland",
-        "Noord-Brabant",
-        "Limburg"
+        "groningen",
+        "friesland",
+        "drenthe",
+        "overijssel",
+        "flevoland",
+        "gelderland",
+        "utrecht",
+        "noord-holland",
+        "noord holland",
+        "zuid-holland",
+        "zuid holland",
+        "zeeland",
+        "noord-brabant",
+        "limburg"
     ]
 }

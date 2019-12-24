@@ -13,13 +13,13 @@ class Tagger extends Dictionary {
                 if (err) throw err;
             });
             let untagged = fileContent.split(' ');
-            console.log('Wordcount: ' + untagged.length);
+            // console.log('Wordcount: ' + untagged.length);
             // untagged = untagged.filter(x => x.length > 2);
-            console.log('Wordcount after filter: ' + untagged.length);
+            // console.log('Wordcount after filter: ' + untagged.length);
 
             // elk tagged woord
             for (let j = 0; j < untagged.length; j++) {
-                untagged[j] = untagged[j].replace('\\n', '').toLowerCase()
+                untagged[j] = untagged[j].replace('\n', '').toLowerCase()
                 let word = {
                     min_2: untagged[j - 2],
                     min_1: untagged[j - 1],
@@ -34,7 +34,7 @@ class Tagger extends Dictionary {
                     // elk dict array
                     for (let i = 0; i < d.data.length; i++) {
                         // we need the power of regex over here
-                        if (untagged[j] == (d.data[i]).toLowerCase()) {
+                        if (untagged[j] == (d.data[i])) {
                             untagged[j] = this.placeTag(untagged[j], d.color, d.label);
                         }
                     }

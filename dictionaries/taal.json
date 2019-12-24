@@ -1,12 +1,1 @@
-{
-    "label": "taal",
-    "color": "danger",
-    "data": [
-        "Nederlands",
-        "Frans",
-        "Duits",
-        "Engels",
-        "Spaans",
-        "Italiaans"
-    ]
-}
+{"label":"taal","color":"danger","data":["nederlands","frans","duits","engels","spaans","italiaans"]}
