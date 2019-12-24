@@ -1,5 +1,6 @@
 {
     "label": "universiteit",
+    "color": "danger",
     "data": [
         "Erasmus Universiteit Rotterdam",
         "Maastricht University",

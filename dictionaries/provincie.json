@@ -1,5 +1,6 @@
 {
     "label": "provincie",
+    "color": "warning",
     "data": [
         "Groningen",
         "Friesland",

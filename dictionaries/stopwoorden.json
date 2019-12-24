@@ -1,4 +1,7 @@
-    [
+{
+    "label": "stopwoord",
+    "color": "grey-light",
+    "data": [
         "der",
         "was",
         "hem",
@@ -101,3 +104,4 @@
         "te",
         "ook"
     ]
+}

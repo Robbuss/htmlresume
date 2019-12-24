@@ -15,6 +15,14 @@ async function main() {
   await FileHandler.toOutput('txt');
 };
 
+async function lowerCaseDict(){
+  files = await FileHandler.getFiles('', './dictionaries');
+  for(file in files){
+    
+  }
+}
+lowerCaseDict();
+
 app.set('view engine', 'pug')
 
 app.get('/python', function (req, res) {

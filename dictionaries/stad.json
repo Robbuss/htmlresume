@@ -1,5 +1,6 @@
 {
     "label": "stad",
+    "color": "danger",
     "data": [
         "s-Graveland",
         "s-Gravendeel",
@@ -5429,7 +5430,6 @@
         "Wernhout",
         "Wernhoutsburg",
         "Werveld",
-        "Werven",
         "Wervershoof",
         "Wesch",
         "Wesepe",
@@ -5644,7 +5644,6 @@
         "Wonneburen",
         "Wons",
         "Wûns",
-        "Woord",
         "Wordragen",
         "Workum",
         "Warkum",

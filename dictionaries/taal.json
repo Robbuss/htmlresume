@@ -1,5 +1,6 @@
 {
     "label": "taal",
+    "color": "danger",
     "data": [
         "Nederlands",
         "Frans",

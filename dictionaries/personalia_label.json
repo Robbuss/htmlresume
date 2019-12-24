@@ -1,5 +1,6 @@
 {
     "label": "pers_label",
+    "color": "success",
     "data": [
         "Naam",
         "email",
