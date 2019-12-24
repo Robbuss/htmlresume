@@ -1,5 +1,6 @@
 const fs = require('fs');
 const Dictionary = require('./Dictionary');
+const stringSimilarity = require('string-similarity');
 
 class Tagger extends Dictionary {
     placeTag(word, color, label){
@@ -12,14 +13,14 @@ class Tagger extends Dictionary {
             let fileContent = fs.readFileSync(dirs[i], 'utf8', function (err) {
                 if (err) throw err;
             });
-            let untagged = fileContent.split(' ');
-            // console.log('Wordcount: ' + untagged.length);
-            // untagged = untagged.filter(x => x.length > 2);
-            // console.log('Wordcount after filter: ' + untagged.length);
+            let untagged = fileContent.split(' ')
+            console.log('Wordcount: ' + untagged.length);
+            untagged = untagged.filter(x => x.length > 2);
+            console.log('Wordcount after filter: ' + untagged.length);
 
             // elk tagged woord
             for (let j = 0; j < untagged.length; j++) {
-                untagged[j] = untagged[j].replace('\n', '').toLowerCase()
+                untagged[j] = untagged[j].replace('\n', '').toLowerCase().replace(' ', '')
                 let word = {
                     min_2: untagged[j - 2],
                     min_1: untagged[j - 1],
@@ -34,13 +35,16 @@ class Tagger extends Dictionary {
                     // elk dict array
                     for (let i = 0; i < d.data.length; i++) {
                         // we need the power of regex over here
-                        if (untagged[j] == (d.data[i])) {
+                        if(stringSimilarity.compareTwoStrings(untagged[j], d.data[i]) > 0.8)
                             untagged[j] = this.placeTag(untagged[j], d.color, d.label);
-                        }
+
+                        // if (untagged[j] == d.data[i]) {
+                        //     untagged[j] = this.placeTag(untagged[j], d.color, d.label);
+                        // }
                     }
                 }
             }
-            data.push(untagged.join(' '));
+            data.push(untagged.join(', '));
         }
         return data;
     }

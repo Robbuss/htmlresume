@@ -19,6 +19,7 @@
         "pdftohtmljs": "^0.5.3",
         "pug": "^2.0.4",
         "python-shell": "^1.0.8",
+        "string-similarity": "^3.0.0",
         "word2pdf": "^1.0.8"
     }
 }
