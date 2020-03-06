@@ -54,4 +54,5 @@ app.get('/tag', function (req, res) {
 
 app.listen(3001, function () {
   console.log('server running on port 3001');
+  main();
 })

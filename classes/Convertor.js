@@ -74,7 +74,7 @@ class Convertor extends BaseClass {
             }
 
             let pdf = await pdfparse(fs.readFileSync(files[i]), renderOptions)
-            fs.writeFile(files[i].replace('pdf', 'txt'), pdf.text, function (err) {
+            fs.writeFile(files[i].replace('pdf', 'txt'), pdf.text + ' parser_pdf-parse ', function (err) {
                 if (err) throw err;
                 console.log('Created file.');
             });
